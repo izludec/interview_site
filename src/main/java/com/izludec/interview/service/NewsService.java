@@ -19,16 +19,18 @@ public class NewsService {
 
     protected static Logger logger = Logger.getLogger("service");
 
-    @Resource(name="sessionFactory")
-    private SessionFactory sessionFactory;
-
-    
+   @Resource(name="sessionFactory")
+    private SessionFactory sessionFactory;    
     
     public List<News> getAll() {
         logger.debug("Retrieving all news");
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM  News");
+        Query query = session.createQuery("FROM  News");  
+        
         return  query.list();
+    }
+    public void SessionClose(){
+        sessionFactory.close();
     }
     
     
@@ -37,7 +39,7 @@ public class NewsService {
         Session session = sessionFactory.getCurrentSession();
         word = "%"+word+"%";
         String QUERY = "FROM  News WHERE TEXT LIKE ? OR HEAD LIKE ?";
-        Query query = session.createQuery(QUERY).setString(0, word).setParameter(1, word);    
+        Query query = session.createQuery(QUERY).setString(0, word).setParameter(1, word);         
         return  query.list();
     }
     
@@ -46,21 +48,25 @@ public class NewsService {
         Session session = sessionFactory.getCurrentSession();
         word = "%"+word+"%";
         String QUERY = "FROM  News WHERE CATEGORY LIKE ?";
-        Query query = session.createQuery(QUERY).setString(0, word);    
+        Query query = session.createQuery(QUERY).setString(0, word);  
+               
         return  query.list();
     }
     
     
     public News get( Integer id ) {
         Session session = sessionFactory.getCurrentSession();
-        News news = (News) session.get(News.class, id);
+        News news = (News) session.get(News.class, id);    
+        
         return news;
     }
 
     public void add(News news) {
         logger.debug("Adding new news");
         Session session = sessionFactory.getCurrentSession();
-        session.save(news);
+        news.setDate(new Date());
+        session.save(news);       
+        
     }
 
 
@@ -68,7 +74,8 @@ public class NewsService {
         logger.debug("Deleting existing news");
         Session session = sessionFactory.getCurrentSession();
         News news = (News) session.get(News.class, id);
-        session.delete(news);
+        session.delete(news);       
+       
     }
 
 
@@ -80,6 +87,7 @@ public class NewsService {
         existingNews.setText(news.getText());
         existingNews.setDate(news.getDate());
         existingNews.setCategory(news.getCategory());
-        session.save(existingNews);
+        session.save(existingNews);    
+        
     }
 }

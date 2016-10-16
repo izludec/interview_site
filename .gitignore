@@ -2,3 +2,4 @@
 /src/main/resources/log4j.properties
 /.idea/
 /src/test/
+/target/

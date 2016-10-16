@@ -1,6 +1,7 @@
 package com.izludec.interview.domain;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ public class News implements Serializable {
  private String text;
   
  @Column(name = "PUBLDATE")
- private Date date;
+ private String date;
  
  @Column(name = "CATEGORY")
  private String category;
@@ -65,11 +66,16 @@ public class News implements Serializable {
  }
 
  public Date getDate() {
-  return date;
+     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+     try{
+        return dateFormat.parse(this.date);
+     }
+     catch(Exception e){}
+     return new Date();
  }
 
- public void setDate(Date date) {
-  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-  this.date = new Date();
+ public void setDate(Date date) {    
+     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+  this.date = dateFormat.format(new Date());
  }
 }

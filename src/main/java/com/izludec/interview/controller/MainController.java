@@ -21,13 +21,27 @@ public class MainController {
 
     @Resource(name="newsService")
     private NewsService newsService;
+    
+    
+    @RequestMapping(value = "/news/login", method = RequestMethod.GET)
+	public String signin() {
+		return "login";
+	}
+	
+	@RequestMapping(value = "/news/login-failure", method = RequestMethod.GET)
+	public String signinFailure() {
+		return "login_failure";
+	}
 
    
 
-    @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public String getNews(Model model) {
+  @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public String getNews(@RequestParam(value="page", required=false) Integer page, Model model) {
         List<News> news = newsService.getAll();
-        model.addAttribute("news", news);
+        if (page==null) page=1;
+        model.addAttribute("news", news); 
+        model.addAttribute("page", page);  
+        newsService.SessionClose();
         return "newspage";
     }
 
@@ -35,14 +49,15 @@ public class MainController {
     @RequestMapping(value = "/news/add", method = RequestMethod.GET)
     public String getAdd(Model model) {
         model.addAttribute("newsAttribute", new News());
+        newsService.SessionClose();
         return "addpage";
     }
 
    
     @RequestMapping(value = "/news/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("newsAttribute") News news) { 
-      
+    public String add(@ModelAttribute("newsAttribute") News news) {       
         newsService.add(news);
+        newsService.SessionClose();
         return "addedpage";
     }
 
@@ -52,6 +67,7 @@ public class MainController {
                          Model model) {    
         newsService.delete(id);
         model.addAttribute("id", id);
+        newsService.SessionClose();
         return "deletedpage";
     }
 
@@ -59,6 +75,7 @@ public class MainController {
     public String getEdit(@RequestParam(value="id", required=true) Integer id,
                           Model model) {
         model.addAttribute("newsAttribute", newsService.get(id));
+        newsService.SessionClose();
         return "editpage";
     }
 
@@ -70,6 +87,7 @@ public class MainController {
         news.setId(id);
         newsService.edit(news);
         model.addAttribute("id", id);
+        newsService.SessionClose();
         return "editedpage";
     }
     
@@ -78,6 +96,7 @@ public class MainController {
                            Model model) {
         News news = newsService.get(id);
         model.addAttribute("news", news);
+        newsService.SessionClose();
         return "shownews";
     }
     
@@ -88,6 +107,7 @@ public class MainController {
                            Model model) {
         List<News> news = newsService.getSearch(text);
         model.addAttribute("news", news);
+        newsService.SessionClose();
         return "searchpage";
     }
     
@@ -97,6 +117,7 @@ public class MainController {
                            Model model) {
         List<News> news = newsService.getTag(text);
         model.addAttribute("news", news);
+        newsService.SessionClose();
         return "searchpage";
     }
 

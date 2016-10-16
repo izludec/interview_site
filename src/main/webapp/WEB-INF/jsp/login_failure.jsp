@@ -6,7 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs"
       xmlns:f="http://java.sun.com/jsf/core">
@@ -48,7 +47,8 @@
   
 
 <div class="row-fluid">
-<div class="span10 fix-main">
+<div class="span10 fix-main">   
+
 
 <c:url var="addUrl" value="/izludec/main/news/add"/>
     <c:url var="editUrl" value="/izludec/main/news/edit?id=${news.id}"/>
@@ -57,8 +57,9 @@
     
     <div class="well" style="background-color:#ffffff;">
         <c:set var="now" value="<%=new java.util.Date()%>" />
-        <center><h2><p>Вы добавили новость! <br> Дата: <fmt:formatDate value="${now}" pattern="dd-MM-yyyy"/></p></h2><br>
-        <a href="${mainUrl}" class="delete btn btn-success" id="btn-add-comment">Главная</a></center>
+        <center><h2><p>Ошибка входа! Неправильный логин или пароль.</p></h2><br>
+        <a href="${mainUrl}" class="delete btn btn-success" id="btn-add-comment">Главная</a><a href="${mainUrl}/login" class="delete btn btn-success" id="btn-add-comment">Попробовать еще раз</a>
+        </center>
     </div>
 			
 	  	
@@ -69,6 +70,7 @@
 
 </div> 
 
+<!--<a class="add" href="${addUrl}">Добавить новость</a>-->
 
 </ul>
 <div style='float: none; clear: both;'></div>
