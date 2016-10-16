@@ -228,7 +228,7 @@ a.bdownload {
  
 .bdownload::before {
     background-color:#322620;
-    background-image:url('http://devcolibri.com/cp/wp-content/uploads/2013/01/right_arrow.png');
+    background-image:url('');
     background-repeat:no-repeat;
     background-position:center center;
     content:"";
