@@ -158,19 +158,7 @@
         </dependency>
         
         
-        
-        <dependency>
-    <groupId>com.datastax.cassandra</groupId>
-    <artifactId>cassandra-driver-core</artifactId>
-    <version>1.0.1</version>
-    <exclusions>
-        <exclusion>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-        
+       
         
         <dependency>
             <groupId>org.slf4j</groupId>
