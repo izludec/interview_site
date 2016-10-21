@@ -12,6 +12,7 @@
 
 	
 	
+    
 	<http auto-config="true" use-expressions="true">
 		<!--<intercept-url pattern="/**" access="permitAll" />-->
 		<intercept-url pattern="/izludec/main/news/add" access="hasRole('ROLE_ADMIN')" />

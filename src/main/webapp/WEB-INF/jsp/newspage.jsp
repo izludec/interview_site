@@ -43,7 +43,7 @@
 </ul>
 <c:url var="searchUrl" value="/izludec/main/news/search?text=${text}" />
 <form role="search" id="demo-b" class="navbar-search pull-right" action="${searchUrl}" >
-<input type="search" name="s" placeholder="Search">
+<input type="search" name="text" placeholder="Search"/>
 </form>
 </div></div></div>
 </div>
@@ -181,6 +181,16 @@ class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""/>
                 </sec:authorize>
 </div>
 </div>
+                
+                <div class="row-fluid">
+			<div class="well" id="footer">
+				<center>
+					<span style="font-size: 12px;">  оличество уникальных посетителей ${count}</span><br />
+				</center>
+				
+			</div>
+		</div>
+                
 </div>
                 </div>                
     

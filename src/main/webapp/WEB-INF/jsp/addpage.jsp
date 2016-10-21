@@ -42,7 +42,7 @@
 </ul>
 <c:url var="searchUrl" value="/izludec/main/news/search?text=${text}" />
 <form role="search" id="demo-b" class="navbar-search pull-right" method="get" action="${searchUrl}" >
-<input type="search" name="s" placeholder="Search">
+<input type="search" name="text" placeholder="Search"/>
 </form>
 </div></div></div>
 </div>

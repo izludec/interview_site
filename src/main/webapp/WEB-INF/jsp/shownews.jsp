@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="cp1251"%>
 
@@ -39,7 +40,7 @@
 </sec:authorize>
 </ul>
 <form role="search" id="demo-b" class="navbar-search pull-right" method="get" action="${searchUrl}" >
-<input type="search" name="s" placeholder="Search">
+<input type="search" name="text" placeholder="Search"/>
 </form>
 </div></div></div>
 </div>
